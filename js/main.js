@@ -64,3 +64,61 @@ filterBtns.forEach((btn) => {
 
 // ---------- Footer year ----------
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// ---------- Contact form (sends to Ahmed's email via FormSubmit) ----------
+const form = document.getElementById("contact-form");
+const statusEl = document.getElementById("form-status");
+const ENDPOINT = "https://formsubmit.co/ajax/ahmed.berrechach1@gmail.com";
+const MIN_GAP_MS = 30000; // anti-spam: one message every 30 seconds
+let lastSent = 0;
+
+function setStatus(text, type) {
+  statusEl.textContent = text;
+  statusEl.className = "form-status " + (type || "");
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Bots fill the hidden field: pretend success and stop
+  if (form.elements["_honey"].value) { setStatus("Thank you! Your message has been sent.", "ok"); form.reset(); return; }
+
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+
+  if (Date.now() - lastSent < MIN_GAP_MS) {
+    setStatus("Please wait a few seconds before sending another message.", "err");
+    return;
+  }
+
+  const btn = form.querySelector("button[type=submit]");
+  const label = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = "Sending...";
+  setStatus("", "");
+
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        name: form.elements["name"].value.trim(),
+        email: form.elements["email"].value.trim(),
+        message: form.elements["message"].value.trim(),
+        _subject: form.elements["_subject"].value,
+        _template: "table",
+        _captcha: "false",
+      }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.success === "false" || data.success === false) throw new Error("send failed");
+
+    lastSent = Date.now();
+    form.reset();
+    setStatus("Thank you! Your message has been sent. I'll reply as soon as possible.", "ok");
+  } catch (err) {
+    setStatus("Sorry, the message could not be sent. Please email me directly at ahmed.berrechach1@gmail.com or message me on WhatsApp.", "err");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = label;
+  }
+});
