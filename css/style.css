@@ -740,3 +740,4 @@ h3.sub.reveal { margin-top: clamp(48px, 6vw, 80px); }
 .notfound p { color: var(--muted); }
 .notfound .btn { justify-self: center; }
 .legal ul + p { margin-top: 12px; }
+
