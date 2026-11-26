@@ -741,3 +741,135 @@ h3.sub.reveal { margin-top: clamp(48px, 6vw, 80px); }
 .notfound .btn { justify-self: center; }
 .legal ul + p { margin-top: 12px; }
 
+/* ---------- Dark Theme (fixed sidebar + clean page) ---------- */
+html[data-theme="dark"] {
+  --paper: #121214;
+  --card: #1b1b1f;
+  --ink: #f4f4f6;
+  --ink-2: #18181c;
+  --muted: #a6a6b0;
+  --line: #2c2c33;
+  --yellow-soft: rgba(247, 181, 0, 0.18);
+}
+
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] .topbar {
+  background: #111111;
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .sidebar .nav a {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+html[data-theme="dark"] .sidebar .nav a:hover {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .sidebar .nav a.active {
+  color: var(--yellow);
+}
+
+html[data-theme="dark"] .sidebar .nav a i {
+  background: #111111;
+}
+
+html[data-theme="dark"] .hero h1,
+html[data-theme="dark"] .sec-head h2,
+html[data-theme="dark"] .about-copy .big,
+html[data-theme="dark"] .service h4,
+html[data-theme="dark"] .card h4 {
+  color: #f4f4f6;
+}
+
+html[data-theme="dark"] .lead,
+html[data-theme="dark"] .about-copy p,
+html[data-theme="dark"] .service p,
+html[data-theme="dark"] .card p {
+  color: #c8c8d2;
+}
+
+html[data-theme="dark"] .btn-line {
+  color: #f4f4f6;
+  border-color: #f4f4f6;
+}
+
+html[data-theme="dark"] .btn-line:hover {
+  background: #f4f4f6;
+  color: #111111;
+}
+
+html[data-theme="dark"] .filters button {
+  color: #f4f4f6;
+  border-color: #3a3a42;
+}
+
+html[data-theme="dark"] .filters button.on {
+  background: var(--yellow);
+  color: #111111;
+  border-color: var(--yellow);
+}
+
+html[data-theme="dark"] .tags li {
+  background: var(--card);
+  color: #f4f4f6;
+  border-color: var(--line);
+}
+
+html[data-theme="dark"] .badge.soon {
+  background: #282830;
+  color: #d0d0d8;
+}/* ---------- Language + theme buttons ---------- */
+.controls { display: flex; gap: 8px; margin-bottom: 18px; }
+.controls button {
+  min-width: 40px; height: 36px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.22); background: transparent; color: #fff;
+  font: 700 13px var(--body); cursor: pointer;
+}
+.controls button:hover { border-color: #F7B500; }
+.controls button.on { background: #F7B500; border-color: #F7B500; color: #111; }
+
+/* ---------- Dark mode fixes ---------- */
+html[data-theme="dark"] .block.dark { background: #0b0b0d; }
+html[data-theme="dark"] .stats,
+html[data-theme="dark"] .role { background: #1b1b1f; color: #fff; }
+html[data-theme="dark"] .btn-dark { background: var(--yellow); border-color: var(--yellow); color: #111; }
+html[data-theme="dark"] .btn-yellow,
+html[data-theme="dark"] .chip,
+html[data-theme="dark"] .skip,
+html[data-theme="dark"] .socials a:hover,
+html[data-theme="dark"] .notfound h1 em { color: #111; }
+html[data-theme="dark"] .service svg { stroke: #111; }
+html[data-theme="dark"] .legal-top { background: #111; }
+html[data-theme="dark"] .legal p,
+html[data-theme="dark"] .legal li { color: #c8c8d2; }
+html[data-theme="dark"] .hero h1 em::after,
+html[data-theme="dark"] .sec-head h2::after { opacity: .45; }
+
+/* ---------- Arabic (RTL) ---------- */
+html[lang="ar"] { --body: "Segoe UI", Tahoma, Arial, sans-serif; --display: "Segoe UI", Tahoma, Arial, sans-serif; }
+html[lang="ar"] * { letter-spacing: normal !important; }
+html[lang="ar"] .hero h1,
+html[lang="ar"] .sec-head h2 { font-weight: 800; line-height: 1.3; }
+html[dir="rtl"] .logo,
+html[dir="rtl"] .contact-list a,
+html[dir="rtl"] .chip-a,
+html[dir="rtl"] .chip-b { direction: ltr; unicode-bidi: isolate; }
+html[dir="rtl"] .hp { left: auto !important; right: -9999px; }
+html[dir="rtl"] .nav { padding-left: 0; padding-right: 22px; }
+html[dir="rtl"] .nav::before { left: auto; right: 4px; }
+html[dir="rtl"] .nav a i { left: auto; right: -22px; }
+html[dir="rtl"] .nav a.active { transform: translateX(-4px); }
+
+@media (min-width: 901px) {
+  html[dir="rtl"] .sidebar { inset: 0 0 0 auto; }
+  html[dir="rtl"] main { margin-left: 0; margin-right: var(--sidebar); }
+}
+@media (max-width: 900px) {
+  html[dir="rtl"] .sidebar:not(.open) { transform: translateX(-100%); }
+}
+.legal-top .controls { margin: 0; margin-inline-start: auto; }
+html[dir="rtl"] .legal ul { padding-left: 0; padding-right: 22px; }
+/* Hide contact form for now */
+#contact-form { display: none; }
+.contact-grid { grid-template-columns: 1fr; }
