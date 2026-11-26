@@ -146,7 +146,7 @@ form.addEventListener("submit", async (e) => {
       fr: ["<i></i>Accueil", "<i></i>À propos", "<i></i>Compétences", "<i></i>Portfolio", "<i></i>Contact"],
       ar: ["<i></i>الرئيسية", "<i></i>من أنا", "<i></i>المهارات", "<i></i>أعمالي", "<i></i>تواصل معي"]
     },
-    ".status": { fr: ["<b></b> Disponible en freelance"], ar: ["<b></b> متاح للعمل الحر"] },
+      ".status": { fr: ["<b></b> Ouvert aux opportunités"], ar: ["<b></b> متاح لفرص جديدة"] },
     ".hi": { fr: ["Bonjour !"], ar: ["مرحباً!"] },
     ".hero h1": { fr: ["Je suis <em>Ahmed</em>"], ar: ["أنا <em>أحمد</em>"] },
     ".role": { fr: ["Développeur Web"], ar: ["مطور ويب"] },
